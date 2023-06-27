@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="text">Java Script is the best programming language!</p>
+<button onclick="change_font_size()">Click me</button>
+<script>
+    let clicked = false;
+
+    function change_font_size() {
+        alert("Clicked");
+        if (clicked) {
+            document.getElementById("text").style.fontSize = "16px";
+            clicked = false;
+        } else {
+            document.getElementById("text").style.fontSize = "35px";
+            clicked = true;
+        }
+    }
+
+</script>
+
+</body>
+</html>
