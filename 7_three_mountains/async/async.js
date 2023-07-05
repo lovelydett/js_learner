@@ -55,6 +55,20 @@ function try_callback2() {
     console.log(res);
 }
 
+// 2. Promise
+// @description: A promise is an object that may produce a single value some time in the future
+//              : either a resolved value, or a reason that it's not resolved (e.g., a network error occurred).
+//              The key of promise is that it solves the problem of callback hell:
+//              making NESTED structure into CHAINED!!
+
+function try_promise() {
+    const time_consuming_task = function (resolve, reject) {
+        // do something time consuming here
+        // and then resolve or reject
+    };
+
+
+}
 
 function main() {
     // try_callback();
