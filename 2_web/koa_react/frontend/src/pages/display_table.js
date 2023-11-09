@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, List, ListItem, ListItemText, Typography } from '@material-ui/core';
 
 function DisplayTable() {
-    // mock some data
-    const [articles, setArticle] = useState([
-        {
-            name: 'Book1',
-            numPage: 110,
-        },
-        {
-            name: 'Book2',
-            numPage: 120,
-        },
-        {
-            name: 'Book3',
-            numPage: 130,
-        },
-    ]);
+    // when loading the component, request the data from the backend
+    const [articles, setArticle] = useState([]);
+    useEffect(() => {
+        const url = 'http://localhost:3003/api/table';
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setArticle(data);
+            }).catch(err => {
+                console.log(err);
+                setArticle([]);
+            });
+    });
+
     const handleAddArticle = () => {
         setArticle([...articles, {
             name: 'Book4',
@@ -29,13 +28,13 @@ function DisplayTable() {
                 Articles
             </Typography>
             <Button variant="text" color="primary" onClick={handleAddArticle}> Add Article </Button>
-            <ArticleList articles={articles}/>
+            <ArticleList articles={articles} />
         </div>
     )
 }
 
 function ArticleList(props) {
-    const {articles} = props
+    const { articles } = props
     return (
         <List>
             {

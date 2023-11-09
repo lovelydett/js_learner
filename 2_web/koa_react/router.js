@@ -12,8 +12,8 @@ const users = [
     { username: 'test2', password: 'test2' },
 ];
 let currentUsers = new Set();
-// POST /login
-router.post("/login", async (ctx) => {
+// POST api/login
+router.post('/login', async (ctx) => {
     const { username, password } = ctx.request.body;
     let isLogin = false;
     for (let user of users) {
@@ -36,4 +36,27 @@ router.post("/login", async (ctx) => {
         ctx.body = { error: "Invalid username or password" };
     }
 
+});
+
+// GET api/table
+router.get('/table', async (ctx) => {
+    console.log('GET api/table')
+    const data = [
+        {
+            name: 'Book1',
+            numPage: 110,
+        },
+        {
+            name: 'Book2',
+            numPage: 120,
+        },
+        {
+            name: 'Book3',
+            numPage: 130,
+        },
+    ];
+
+    ctx.type = 'application/json';
+    ctx.status = HttpStatus.OK;
+    ctx.body = data;
 });
